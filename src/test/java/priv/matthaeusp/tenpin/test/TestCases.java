@@ -19,9 +19,9 @@ public class TestCases {
     }
     
     @Test
-    void failsIfTooLittleOrTooManyRolls() {
+    void failsIfTooManyRolls() {
         Integer [] rolls = {
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 // 22 rolls
+            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 // 23 rolls
         };
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new GameContext(rolls);
@@ -48,6 +48,17 @@ public class TestCases {
         var ctx = new GameContext( rolls );
         
         Assertions.assertEquals(0, ctx.calculateTotalScore());
+    }
+    
+    @Test
+    void highestScoreEquals300IfAllRollsAreStrike() {
+        Integer [] rolls = {
+            10,10,10,10,10,10,10,10,10,10,10,10 
+        };
+        
+        var ctx = new GameContext( rolls );
+        
+        Assertions.assertEquals(300, ctx.calculateTotalScore());
     }
     
     
