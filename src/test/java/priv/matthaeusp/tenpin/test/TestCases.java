@@ -33,12 +33,12 @@ public class TestCases {
         Integer [] rolls = { 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 };
         
         var ctx = new GameContext(rolls);
-        var rollsInsideArrayList = ctx.rolls
+        var gameRolls = ctx.rolls
             .stream()
             .map( r -> r.getPinsHit() )
             .toArray();
         
-        Assertions.assertArrayEquals(rolls, rollsInsideArrayList);
+        Assertions.assertArrayEquals(rolls, gameRolls);
     }
     
     @Test
@@ -47,7 +47,7 @@ public class TestCases {
         
         var ctx = new GameContext( rolls );
         
-        Assertions.assertEquals(0, ctx.calculateTotalScore());
+        Assertions.assertEquals(0, ctx.getTotalScore());
     }
     
     @Test
@@ -58,7 +58,18 @@ public class TestCases {
         
         var ctx = new GameContext( rolls );
         
-        Assertions.assertEquals(300, ctx.calculateTotalScore());
+        Assertions.assertEquals(300, ctx.getTotalScore());
+    }
+    
+    @Test
+    void testGameScoreEquals141() {
+        Integer [] rolls = {
+            10,8,2,5,5,0,2,10,3,6,1,9,10,4,4,10,2,8
+        };
+        
+        var ctx = new GameContext( rolls );
+        
+        Assertions.assertEquals( 141, ctx.getTotalScore() );
     }
     
     
